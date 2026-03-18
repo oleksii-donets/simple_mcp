@@ -6,7 +6,7 @@
     "url": "https://github.com/oleksii-donets/simple_mcp",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packages": [
     {
       "registryType": "oci",
@@ -37,7 +37,7 @@
       },
       "environmentVariables": [
         {
-          "description": "Transport type (STDIO, HTTP, SSE)",
+          "description": "Transport type",
           "isRequired": true,
           "format": "string",
           "isSecret": false,
