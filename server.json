@@ -10,7 +10,7 @@
   "packages": [
     {
       "registryType": "oci",
-      "identifier": "docker.io/d0nets/simple-mcp:0.0.3",
+      "identifier": "docker.io/d0nets/simple-mcp:0.0.4",
       "transport": {
         "type": "stdio"
       },
@@ -30,7 +30,7 @@
     },
     {
       "registryType": "oci",
-      "identifier": "docker.io/d0nets/simple-mcp:0.0.3",
+      "identifier": "docker.io/d0nets/simple-mcp:0.0.4",
       "transport": {
         "type": "streamable-http",
         "url": "http://{APP_HOST}:{APP_PORT}/mcp"
