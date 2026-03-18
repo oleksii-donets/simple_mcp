@@ -1,0 +1,68 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.oleksii-donets/simple_mcp",
+  "description": "A Test MCP server that provides tools, promts and resources",
+  "repository": {
+    "url": "https://github.com/oleksii-donets/simple_mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "docker.io/d0nets/simple-mcp:0.0.3",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Transport type",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_TRANSPORT",
+          "default": "STDIO",
+          "choices": [
+            "STDIO"
+          ]
+        }
+      ]
+    },
+    {
+      "registryType": "oci",
+      "identifier": "docker.io/d0nets/simple-mcp:0.0.3",
+      "transport": {
+        "type": "streamable-http",
+        "url": "http://{APP_HOST}:{APP_PORT}/mcp"
+      },
+      "environmentVariables": [
+        {
+          "description": "Transport type (STDIO, HTTP, SSE)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_TRANSPORT",
+          "choices": [
+            "HTTP"
+          ]
+        },
+        {
+          "description": "Server host",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_HOST",
+          "default": "0.0.0.0"
+        },
+        {
+          "description": "Server port",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_PORT",
+          "default": "8000"
+        }
+      ]
+    }
+  ]
+}

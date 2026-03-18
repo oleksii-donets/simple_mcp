@@ -1,5 +1,7 @@
 FROM python:3.12-slim
 
+LABEL io.modelcontextprotocol.server.name="io.github.oleksii-donets/simple_mcp"
+
 # Avoid Python writing .pyc files and ensure stdout/stderr are unbuffered
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
