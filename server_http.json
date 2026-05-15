@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.oleksii-donets/simple_mcp_http",
+  "description": "A Test MCP server that provides tools, promts and resources",
+  "version": "1.0.2",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "docker.io/d0nets/simple-mcp-http:0.0.4",
+      "transport": {
+        "type": "streamable-http",
+        "url": "http://{APP_HOST}:{APP_PORT}/mcp"
+      },
+      "environmentVariables": [
+        {
+          "description": "Server host",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_HOST",
+          "default": "0.0.0.0"
+        },
+        {
+          "description": "Server port",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APP_PORT",
+          "default": "8080"
+        }
+      ]
+    }
+  ]
+}

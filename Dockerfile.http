@@ -1,0 +1,33 @@
+FROM python:3.12-slim
+
+LABEL io.modelcontextprotocol.server.name="io.github.oleksii-donets/simple_mcp_http"
+
+# Avoid Python writing .pyc files and ensure stdout/stderr are unbuffered
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/root/.local/bin:${PATH}" \
+    APP_TRANSPORT=HTTP \
+    APP_HOST=0.0.0.0 \
+    APP_PORT=8080
+
+WORKDIR /app
+
+# Install curl and certificates to fetch uv, then install uv
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Leverage layer caching: copy only dependency files first
+COPY pyproject.toml uv.lock ./
+
+# Install project dependencies into a virtualenv managed by uv
+RUN uv sync --frozen --no-dev
+
+# Now copy the rest of the source code
+COPY . .
+
+EXPOSE 8080
+
+# Start the MCP server (HTTP transport by default via env vars above)
+CMD [".venv/bin/python", "main.py"]
